@@ -1,1 +1,11 @@
-IiIiU2hpcHBpbmcgcmF0ZSBjYWxjdWxhdGlvbnMuIiIiCgoKZGVmIHNoaXBwaW5nX3F1b3RlKHdlaWdodF9rZzogZmxvYXQsIHpvbmU6IHN0cikgLT4gZmxvYXQ6CiAgICAiIiJRdW90ZSBzdGFuZGFyZCBzaGlwcGluZyBpbiBkb2xsYXJzLiIiIgogICAgaWYgd2VpZ2h0X2tnIDw9IDA6CiAgICAgICAgcmFpc2UgVmFsdWVFcnJvcigid2VpZ2h0IG11c3QgYmUgcG9zaXRpdmUiKQogICAgaWYgem9uZSBub3QgaW4geyJsb2NhbCIsICJyZWdpb25hbCJ9OgogICAgICAgIHJhaXNlIFZhbHVlRXJyb3IoInVua25vd24gem9uZSIpCiAgICBiYXNlID0gNS4wIGlmIHpvbmUgPT0gImxvY2FsIiBlbHNlIDguMAogICAgcmV0dXJuIHJvdW5kKGJhc2UgKyAxLjUgKiB3ZWlnaHRfa2csIDIpCg==
+"""Shipping rate calculations."""
+
+
+def shipping_quote(weight_kg: float, zone: str) -> float:
+    """Quote standard shipping in dollars."""
+    if weight_kg <= 0:
+        raise ValueError("weight must be positive")
+    if zone not in {"local", "regional"}:
+        raise ValueError("unknown zone")
+    base = 5.0 if zone == "local" else 8.0
+    return round(base + 1.5 * weight_kg, 2)
